@@ -6,14 +6,17 @@ int main()
 {
     char seguir='s';
     char confirm;
-    int y;
-    int x;
+    int num1;
+    int num2;
     int respuestaSuma;
     int respuestaResta;
     int respuestaMultiplicacion;
     float respuestaDivision;
-    int respuestaFactorial;
-
+    int respuestaFactorialUno;
+    int respuestaFactorialDos;
+    int flagNum1=0;
+    int flagNum2=0;
+    int flagRespuestas=0;
 
     do{
        system("cls");
@@ -21,33 +24,72 @@ int main()
         switch(menuDeOpciones())
         {
             case 1:
-            x=primerNum();
+            num1=pedirNum();
+            flagNum1=1;
             system("pause");
             break;
         case 2:
-            y=segundoNum();
+            if(flagNum1==1)
+            {
+            num2=pedirNum();
+            flagNum2=1;
             system("pause");
+
+            }
+            else
+            {
+                printf("Primero ingresar el primer num \n");
+                system("pause");
+            }
+
             break;
 
 
         case 3:
+            if(flagNum2==1 && flagNum1==1)
+            {
+            respuestaSuma = sumador(num1,num2);
+            respuestaResta = restador(num1,num2);
+            respuestaMultiplicacion = multiplicador(num1,num2);
+            respuestaDivision = divisor(num1,num2);
+            respuestaFactorialUno = factorialNumber(num1);
+            respuestaFactorialDos = factorialNumber(num2);
+            flagRespuestas=1;
 
-            respuestaSuma = sumador(x,y);
-            respuestaResta = restador(x,y);
-            respuestaMultiplicacion = multiplicador(x,y);
-            respuestaDivision = division(x,y);
-            respuestaFactorial = factorialNumber(x);
+            }else
+            {
+                printf("Primero ingresar los numeros de la opcion 1) y 2)\n");
+            }
+
+
             system("pause");
 
             break;
 
         case 4:
+            if(flagRespuestas==1)
+            {
             printf("a)El resultado de A+B es: %d\n",respuestaSuma);
             printf("b) El resultado de A-B es: %d\n",respuestaResta);
-            printf("c) El resultado de A/B es: %f o “No es posible dividir por cero”\n",respuestaDivision);
+            if(num2!=0)
+            {
+                printf("c) El resultado de A/B es: %.2f\n",respuestaDivision);
+            }else
+            {
+                printf("c) No se puede dividir por cero. \n");
+            }
+
             printf("d) El resultado de A*B es: %d\n",respuestaMultiplicacion);
-            printf("e) El factorial de A es: %d y El factorial de B es: r2\n",respuestaFactorial);
+            printf("e) El factorial de A es: %d y El factorial de B es: %d\n",respuestaFactorialUno,respuestaFactorialDos);
             system("pause");
+
+            }
+            else
+            {
+                printf("Primero elegir la opcion 3) antes de mostrar las respuestas \n");
+                system("pause");
+            }
+
             break;
 
 

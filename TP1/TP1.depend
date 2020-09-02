@@ -11,3 +11,15 @@
 
 1598928119 c:\users\roberto\desktop\tp1\funcionesmatematicas.h
 
+1599002399 source:c:\users\roberto\desktop\tp_laboratorio_i\tp1\funcionesmatematicas.c
+	<stdio.h>
+	<stdlib.h>
+	"funcionesMatematicas.h"
+
+1599047518 c:\users\roberto\desktop\tp_laboratorio_i\tp1\funcionesmatematicas.h
+
+1599047518 source:c:\users\roberto\desktop\tp_laboratorio_i\tp1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funcionesMatematicas.h"
+

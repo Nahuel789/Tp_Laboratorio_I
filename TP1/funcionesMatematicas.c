@@ -2,24 +2,17 @@
 #include <stdlib.h>
 #include "funcionesMatematicas.h"
 
-int primerNum()
+int pedirNum()
 {
     int num1;
-    printf("Ingrese primer num: \n");
+    printf("Ingrese num: \n");
     scanf("%d",&num1);
 
     return num1;
 }
 
 
-int segundoNum()
-{
-    int num2;
-    printf("Ingrese primer num: \n");
-    scanf("%d",&num2);
 
-    return num2;
-}
 
 int sumador(int a,int b)
 {
@@ -51,33 +44,37 @@ int multiplicador(int a,int b)
 
 }
 
-float division(int a,int b)
+float divisor(int a,int b)
 
 {
-    int resp;
+    float resp;
+
     resp=(float)a/b;
+    printf("%f esto es respuesta ,",resp);
+
 
     return resp;
 }
 
+
 int factorialNumber(int a)
 {
-    int factorialNum;
+    int fact = 0;
 
-    for(int i=1; i<=a; i++)
+    if(a >= 0)
     {
-
-        factorialNum=factorialNum*i;
-
-
+       if(a==1 || a==0)
+        {
+            fact = 1;
+        }
+        else
+        {
+            fact = a * factorialNumber(a-1);
+        }
     }
 
-    return factorialNum;
-
-
-
+    return fact;
 }
-
 
 int menuDeOpciones()
 {
@@ -89,6 +86,7 @@ int menuDeOpciones()
     printf("1) Ingresar 1er operando (A=x)\n");
     printf("2) Ingresar 2do operando (B=y)\n");
     printf("3) Calcular todas las operaciones\n");
+
     printf("4) Informar resultados\n");
     printf("5) Salir\n\n");
     printf("elija la opcion que desee:");
