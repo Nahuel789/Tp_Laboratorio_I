@@ -12,8 +12,8 @@ int main()
     int respuestaResta;
     int respuestaMultiplicacion;
     float respuestaDivision;
-    int respuestaFactorialUno;
-    int respuestaFactorialDos;
+    unsigned long int respuestaFactorialUno;
+    unsigned long int respuestaFactorialDos;
     int flagNum1=0;
     int flagNum2=0;
     int flagRespuestas=0;
@@ -69,7 +69,7 @@ int main()
         case 4:
             if(flagRespuestas==1)
             {
-            printf("a)El resultado de A+B es: %d\n",respuestaSuma);
+            printf("a) El resultado de A+B es: %d\n",respuestaSuma);
             printf("b) El resultado de A-B es: %d\n",respuestaResta);
             if(num2!=0)
             {
@@ -97,10 +97,20 @@ int main()
             printf("Desea salir? s/n : \n");
             fflush(stdin);
             scanf("%c",&confirm);
+            while(confirm!='s' && confirm!='n')
+            {
+
+            printf("Opcion Invalida, ingresar s/n : \n");
+            fflush(stdin);
+            scanf("%c",&confirm);
+
+            }
             if(confirm=='s')
             {
                 seguir='n';
             }
+
+
             system("pause");
             break;
 

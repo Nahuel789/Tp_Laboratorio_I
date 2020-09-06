@@ -50,14 +50,12 @@ float divisor(int a,int b)
     float resp;
 
     resp=(float)a/b;
-    printf("%f esto es respuesta ,",resp);
-
 
     return resp;
 }
 
 
-int factorialNumber(int a)
+unsigned long int factorialNumber(int a)
 {
     int fact = 0;
 
@@ -85,11 +83,15 @@ int menuDeOpciones()
     printf("***Menu de opciones***\n\n");
     printf("1) Ingresar 1er operando (A=x)\n");
     printf("2) Ingresar 2do operando (B=y)\n");
-    printf("3) Calcular todas las operaciones\n");
-
+    printf("3) Calcular todas las operaciones:\n");
+    printf("a) Calcula la suma (A+B)\n");
+    printf("b) Calcula la resta (A-B)\n");
+    printf("c) Calcula la division (A/B)\n");
+    printf("d) Calcula la multiplicacion (A*B)\n");
+    printf("e) Calcula el factorial(A)\n");
     printf("4) Informar resultados\n");
     printf("5) Salir\n\n");
-    printf("elija la opcion que desee:");
+    printf("elija la opcion que desee(num):");
     scanf("%d",&opcion);
 
 
