@@ -29,7 +29,7 @@ int main()
             system("pause");
             break;
         case 2:
-            if(flagNum1==1)
+            if(flagNum1)
             {
             num2=pedirNum();
             flagNum2=1;
@@ -46,7 +46,7 @@ int main()
 
 
         case 3:
-            if(flagNum2==1 && flagNum1==1)
+            if(flagNum2 && flagNum1)
             {
             respuestaSuma = sumador(num1,num2);
             respuestaResta = restador(num1,num2);
