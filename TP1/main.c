@@ -118,12 +118,9 @@ int main()
             system("pause");
             break;
 
-
-
         }
 
     }while(seguir=='s');
-
 
 
     return 0;
