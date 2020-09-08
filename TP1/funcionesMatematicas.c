@@ -55,9 +55,9 @@ float divisor(int a,int b)
 }
 
 
-unsigned long int factorialNumber(int a)
+long long int factorialNumber(int a)
 {
-    int fact = 0;
+    long long int fact = 0;
 
     if(a >= 0)
     {

@@ -12,8 +12,8 @@ int main()
     int respuestaResta;
     int respuestaMultiplicacion;
     float respuestaDivision;
-    unsigned long int respuestaFactorialUno;
-    unsigned long int respuestaFactorialDos;
+    long long int respuestaFactorialUno;
+    long long int respuestaFactorialDos;
     int flagNum1=0;
     int flagNum2=0;
     int flagRespuestas=0;
@@ -80,7 +80,7 @@ int main()
             }
 
             printf("d) El resultado de A*B es: %d\n",respuestaMultiplicacion);
-            printf("e) El factorial de A es: %d y El factorial de B es: %d\n",respuestaFactorialUno,respuestaFactorialDos);
+            printf("e) El factorial de A es: %lld y El factorial de B es: %lld\n",respuestaFactorialUno,respuestaFactorialDos);
             system("pause");
 
             }
@@ -109,15 +109,16 @@ int main()
             {
                 seguir='n';
             }
-
-
             system("pause");
             break;
 
         default:
+            fflush(stdin);
             printf("Opcion Invalida!\n");
             system("pause");
             break;
+
+
 
         }
 

@@ -51,7 +51,7 @@ float divisor(int a, int b);
  *
  */
 
-unsigned long int factorialNumber(int a);
+long long int factorialNumber(int a);
 /** \brief Menu de opciones
  *
  * \return el numero entero de la opcion elegida.
