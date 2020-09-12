@@ -48,8 +48,16 @@ float divisor(int a,int b)
 
 {
     float resp;
+    if(b!=0)
+    {
 
-    resp=(float)a/b;
+         resp=(float)a/b;
+    }
+    else
+    {
+        resp=-1;
+    }
+
 
     return resp;
 }

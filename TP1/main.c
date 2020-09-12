@@ -71,12 +71,12 @@ int main()
             {
             printf("a) El resultado de A+B es: %d\n",respuestaSuma);
             printf("b) El resultado de A-B es: %d\n",respuestaResta);
-            if(num2!=0)
+            if(respuestaDivision== -1)
             {
-                printf("c) El resultado de A/B es: %.2f\n",respuestaDivision);
+                printf("c) No se puede dividir por 0 \n");
             }else
             {
-                printf("c) No se puede dividir por cero. \n");
+                printf("c) El resultado de A/B es: %.2f\n",respuestaDivision);
             }
 
             printf("d) El resultado de A*B es: %d\n",respuestaMultiplicacion);
