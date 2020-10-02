@@ -13,3 +13,27 @@
 	<string.h>
 	"utn.h"
 
+1601601681 source:c:\users\roberto\desktop\tp_laboratorio_i\tp2\utn.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	<string.h>
+
+1601667626 c:\users\roberto\desktop\tp_laboratorio_i\tp2\utn.h
+
+1601669768 source:c:\users\roberto\desktop\tp_laboratorio_i\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"arrayEmployees.h"
+
+1601672013 source:c:\users\roberto\desktop\tp_laboratorio_i\tp2\arrayemployees.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"arrayEmployees.h"
+
+1601669766 c:\users\roberto\desktop\tp_laboratorio_i\tp2\arrayemployees.h
+
