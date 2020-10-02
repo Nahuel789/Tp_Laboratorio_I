@@ -19,21 +19,21 @@
 	"utn.h"
 	<string.h>
 
-1601667626 c:\users\roberto\desktop\tp_laboratorio_i\tp2\utn.h
+1601675341 c:\users\roberto\desktop\tp_laboratorio_i\tp2\utn.h
 
-1601669768 source:c:\users\roberto\desktop\tp_laboratorio_i\tp2\main.c
+1601680195 source:c:\users\roberto\desktop\tp_laboratorio_i\tp2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"utn.h"
 	"arrayEmployees.h"
 
-1601672013 source:c:\users\roberto\desktop\tp_laboratorio_i\tp2\arrayemployees.c
+1601678569 source:c:\users\roberto\desktop\tp_laboratorio_i\tp2\arrayemployees.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"utn.h"
 	"arrayEmployees.h"
 
-1601669766 c:\users\roberto\desktop\tp_laboratorio_i\tp2\arrayemployees.h
+1601676064 c:\users\roberto\desktop\tp_laboratorio_i\tp2\arrayemployees.h
 

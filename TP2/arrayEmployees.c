@@ -7,7 +7,7 @@
 
 int initEmployees(Employee* list, int len)
 {
-    int retorno=1;
+    int retorno=-1;
 
 
     if(list != NULL && len > 0 )
@@ -41,7 +41,7 @@ int addEmployee(Employee* list, int len, int id, char name[],char lastName[],flo
 {
 
 
-    int retorno=1;
+    int retorno=-1;
     Employee nuevaPersona; //AUXILIAR
     int indice;
     if(list != NULL && len > 0 && id > 0 && name !=NULL && lastName != NULL && salary >=0 && sector >= 1  )
@@ -117,14 +117,19 @@ int findEmployeeById(Employee* list, int len,int id)
 }
 int removeEmployee(Employee* list, int len, int id)
 {
-    int retorno = 1;
+    int retorno = -1;
     int indice;
     char rta;
 
-    system("cls");
+
+
 
     if(list != NULL && len > 0)
     {
+
+
+        system("cls");
+
 
         if((indice=findEmployeeById(list,len,id)) != -1)
         {
@@ -141,7 +146,7 @@ int removeEmployee(Employee* list, int len, int id)
             }
             else
             {
-                retorno = 2;
+                retorno = -2;
             }
 
 
@@ -155,6 +160,7 @@ int removeEmployee(Employee* list, int len, int id)
         else
         {
             printf("Legajo mal ingresado\n");
+            system("pause");
         }
 
     }
@@ -179,7 +185,7 @@ int sortEmployees(Employee* list, int len, int order) // asc 1 desc 0
 
 
 
-    if(list != NULL && len > 0 && order > 0)
+    if(list != NULL && len > 0)
     {
 
         for(int i=0; i<len-1 ; i++)
@@ -227,7 +233,7 @@ int sortEmployees(Employee* list, int len, int order) // asc 1 desc 0
     }
 
 
-return retorno;
+    return retorno;
 
 
 }
@@ -239,7 +245,7 @@ return retorno;
 
 int printEmployees(Employee* list, int length)
 {
-    int retorno=1;
+    int retorno=-1;
     int flag=0;
 
     if(list != NULL && length > 0 )
@@ -257,7 +263,6 @@ int printEmployees(Employee* list, int length)
 
                 printEmployee(list[i]);
                 flag=1;// FLAG PARA VER SI TODOS ESTAN VACIOS
-
 
             }
 
@@ -288,7 +293,7 @@ void printEmployee(Employee employee)
 {
 
 
-    printf("%d  %s  %s   %f    %d\n", employee.id,employee.name,employee.lastName,employee.salary,employee.sector);
+    printf("%1d  %10s  %10s   %.2f    %1d\n", employee.id,employee.name,employee.lastName,employee.salary,employee.sector);
 
 
 }
@@ -323,25 +328,33 @@ int changeEmployeeById(Employee* list,int len,int id)
 {
 
 
-    int retorno = 1;
+    int retorno = -1;
     int indice;
     int opcion;
     char auxCadena[1000];
     float auxFloat;
     int auxInt;
 
-
     if(list != NULL && len > 0 && id >= 1 )
     {
+
+
 
         if((indice=findEmployeeById(list,len,id)) != -1)
         {
 
 
+            printEmployees(list,len);
+            system("pause");
+
+
+            retorno = 0;
+
+
+
 
             system("cls");
 
-            printEmployee(list[indice]);
 
             utn_getNumero(&opcion,"Ingrese  lo que desea modificar:\n1-Nombre\n2-Apellido\n3-Salario\n4-Sector\n","Error .Reingrese",1,4,2);
 
@@ -419,7 +432,7 @@ int changeEmployeeById(Employee* list,int len,int id)
 
 int dataEmployees(Employee* list,int len)
 {
-    int retorno = 1;
+    int retorno = -1;
     float promedio;
     float acumulador=0;
     int counter=0;
@@ -455,14 +468,14 @@ int dataEmployees(Employee* list,int len)
         }
         else
         {
-            printf("el total de salarios es : %f\n", acumulador);
+            printf("el total de salarios es : %.2f\n", acumulador);
 
         }
 
         if(promedio!=0)
         {
 
-        printf("el promedio total es : %f\n", promedio);
+            printf("el promedio total es : %.2f\n", promedio);
 
 
         }
