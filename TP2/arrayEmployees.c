@@ -486,7 +486,7 @@ int dataEmployees(Employee* list,int len)
 
 
         }
-        if(counterPromedio > 1)
+        if(counterPromedio >= 1)
         {
             printf("La cantidad de empleados que superan el promedio son %d\n",counterPromedio);
         }
