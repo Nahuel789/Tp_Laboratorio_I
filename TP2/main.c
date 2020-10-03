@@ -4,7 +4,7 @@
 #include "utn.h"
 #include "arrayEmployees.h"
 
-#define TAM 5
+#define TAM 1000
 
 
 
@@ -23,7 +23,7 @@ int main()
     int flagAdd=1;
     int flagChange=1;
     int flagRemove=1;
-    int criterio=-1;
+    int criterio;
 
 
     Employee list[TAM];
@@ -34,12 +34,13 @@ int main()
         system("pause");
     }
 
+
     do
     {
 
         system("cls");
 
-        if(!utn_getNumero(&opcion,"****Menu de Opciones****\n\n1- Altas\n2-Modificar\n3-Baja\n4-Informar:\n5-Salir\n","Error vuelva a ingresar\n",1,5,1))
+        if(!utn_getNumero(&opcion,"****Menu de Opciones****\n\n1- Altas\n2-Modificar\n3-Baja\n4-Informar\n5-Salir\n","Error vuelva a ingresar\n",1,5,1))
         {
 
             switch(opcion)
@@ -134,8 +135,11 @@ int main()
 
                 if(!flagRemove)
                 {
-                    if(!utn_getNumero(&opcion2,"\n1.Mostrar Empleados por Apellido y Sector\n2.Total y promedio de los salarios, y cuantos superan el promedio.\n","Error . reingrese: \n",1,2,1))
+                    if(!utn_getNumero(&opcion2,"\n1.Mostrar Empleados por Apellido y Sector\n2.Total y promedio de los salarios, y cuantos superan el promedio.\n","Error . reingrese: \n",1,2,0))
                     {
+
+                        system("cls");
+
                         switch(opcion2)
                         {
                         case 1:
@@ -146,17 +150,18 @@ int main()
                             if(!utn_getNumero(&criterio,"Ingrese 1 para ascendente o 0 para descendente:\n","Error.Reingrese\n",0,1,1))
                             {
 
-                                if(criterio)
+                                if(!criterio)
                                 {
-                                    if(!sortEmployees(list,TAM,1))
+                                    if(!sortEmployees(list,TAM,0))
                                     {
                                         printEmployees(list,TAM);
                                         system("pause");
                                     }
                                 }
-                                else
+
+                                if(criterio)
                                 {
-                                    if(!sortEmployees(list,TAM,0))
+                                    if(!sortEmployees(list,TAM,1))
                                     {
                                         printEmployees(list,TAM);
                                         system("pause");

@@ -194,7 +194,7 @@ int sortEmployees(Employee* list, int len, int order) // asc 1 desc 0
             for(int j= i+1 ; j < len ; j++)
             {
 
-                if(list[j].isEmpty == 0 && list[i].isEmpty == 0)
+                if(!list[j].isEmpty && !list[i].isEmpty)
                 {
                     if((list[i].sector > list[j].sector && order)||
                             (list[i].sector < list[j].sector && !order)||
@@ -253,12 +253,12 @@ int printEmployees(Employee* list, int length)
         retorno=0;
 
 
-        printf("ID NOMBRE  APELLIDO  SALARIO   SECTOR \n\n");
+        printf("ID   NOMBRE       APELLIDO      SALARIO    SECTOR \n\n");
 
         for(int i=0; i<length; i++)
         {
 
-            if(list[i].isEmpty == 0)
+            if(!list[i].isEmpty)
             {
 
                 printEmployee(list[i]);
@@ -293,7 +293,7 @@ void printEmployee(Employee employee)
 {
 
 
-    printf("%1d  %10s  %10s   %.2f    %1d\n", employee.id,employee.name,employee.lastName,employee.salary,employee.sector);
+    printf("%d  %10s  %10s   %.2f    %d\n", employee.id,employee.name,employee.lastName,employee.salary,employee.sector);
 
 
 }
@@ -444,7 +444,7 @@ int dataEmployees(Employee* list,int len)
 
         for(int i=0; i<len; i++)
         {
-            if(list[i].salary > 0 && list[i].isEmpty == 0)
+            if(!list[i].isEmpty)
             {
 
                 acumulador += list[i].salary;
@@ -458,24 +458,16 @@ int dataEmployees(Employee* list,int len)
 
 
 
-        }
 
-        promedio =(float)(acumulador/counter);
-        if(acumulador == 0)
-        {
-            printf("El total de salarios es 0\n");
 
         }
-        else
+        if(counter > 0)
         {
+            promedio =(float)(acumulador/counter);
+
+            printf("el promedio es %f\n",promedio);
+
             printf("el total de salarios es : %.2f\n", acumulador);
-
-        }
-
-        if(promedio!=0)
-        {
-
-            printf("el promedio total es : %.2f\n", promedio);
 
 
         }
@@ -494,7 +486,7 @@ int dataEmployees(Employee* list,int len)
 
 
         }
-        if(counterPromedio != 0)
+        if(counterPromedio > 1)
         {
             printf("La cantidad de empleados que superan el promedio son %d\n",counterPromedio);
         }

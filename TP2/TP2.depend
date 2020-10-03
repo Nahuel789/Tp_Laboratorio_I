@@ -21,14 +21,14 @@
 
 1601675341 c:\users\roberto\desktop\tp_laboratorio_i\tp2\utn.h
 
-1601680195 source:c:\users\roberto\desktop\tp_laboratorio_i\tp2\main.c
+1601683237 source:c:\users\roberto\desktop\tp_laboratorio_i\tp2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"utn.h"
 	"arrayEmployees.h"
 
-1601678569 source:c:\users\roberto\desktop\tp_laboratorio_i\tp2\arrayemployees.c
+1601683860 source:c:\users\roberto\desktop\tp_laboratorio_i\tp2\arrayemployees.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
