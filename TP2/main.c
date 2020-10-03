@@ -21,8 +21,6 @@ int main()
     int auxId;
     char seguir= 's';
     int flagAdd=1;
-    int flagChange=1;
-    int flagRemove=1;
     int criterio;
 
 
@@ -84,7 +82,7 @@ int main()
                     {
                         if(!changeEmployeeById(list,TAM,auxId))
                         {
-                            flagChange=0;
+                            printf("\nCargado con exito\n");
 
                         }
 
@@ -107,14 +105,14 @@ int main()
 
             case 3:
 
-                if(!flagChange)
+                if(!flagAdd)
                 {
 
                     if(!utn_getNumero(&auxId,"Ingrese el id que desea borrar: \n","Error id invalido\n",1,1000,2))
                     {
                         if(!removeEmployee(list,TAM,auxId))
                         {
-                            flagRemove=0;
+                            printf("\nRemovido con exito\n");
 
                         }
                     }
@@ -125,7 +123,7 @@ int main()
                 }
                 else
                 {
-                    printf("Primero modificar /agregar un empleado para borrar\n");
+                    printf("Cargar primero un empleado\n");
                     system("pause");
                 }
 
@@ -133,7 +131,7 @@ int main()
 
             case 4:
 
-                if(!flagRemove)
+                if(!flagAdd)
                 {
                     if(!utn_getNumero(&opcion2,"\n1.Mostrar Empleados por Apellido y Sector\n2.Total y promedio de los salarios, y cuantos superan el promedio.\n","Error . reingrese: \n",1,2,0))
                     {
@@ -150,32 +148,15 @@ int main()
                             if(!utn_getNumero(&criterio,"Ingrese 1 para ascendente o 0 para descendente:\n","Error.Reingrese\n",0,1,1))
                             {
 
-                                if(!criterio)
-                                {
-                                    if(!sortEmployees(list,TAM,0))
+
+                                    if(!sortEmployees(list,TAM,criterio))
                                     {
                                         printEmployees(list,TAM);
                                         system("pause");
                                     }
-                                }
-
-                                if(criterio)
-                                {
-                                    if(!sortEmployees(list,TAM,1))
-                                    {
-                                        printEmployees(list,TAM);
-                                        system("pause");
-                                    }
-                                }
-
-
-
-
 
 
                             }
-
-
 
 
                             break;
@@ -201,7 +182,7 @@ int main()
                 }
                 else
                 {
-                    printf("Primero borrar un empleado si desea informar\n");
+                    printf("Cargar primero un empleado\n");
                     system("pause");
                 }
 
