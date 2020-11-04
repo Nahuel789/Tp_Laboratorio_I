@@ -172,3 +172,54 @@
 	<stdlib.h>
 	<string.h>
 
+1604452673 source:c:\users\roberto\desktop\tp_laboratorio_i\tp3\main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+	"menu.h"
+
+1533133022 c:\users\roberto\desktop\tp_laboratorio_i\tp3\linkedlist.h
+
+1604452632 c:\users\roberto\desktop\tp_laboratorio_i\tp3\controller.h
+
+1604452664 c:\users\roberto\desktop\tp_laboratorio_i\tp3\employee.h
+	"LinkedList.h"
+
+1604452632 c:\users\roberto\desktop\tp_laboratorio_i\tp3\menu.h
+
+1604452632 source:c:\users\roberto\desktop\tp_laboratorio_i\tp3\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1601601681 source:c:\users\roberto\desktop\tp_laboratorio_i\tp3\utn.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	<string.h>
+
+1601675341 c:\users\roberto\desktop\tp_laboratorio_i\tp3\utn.h
+
+1604452794 source:c:\users\roberto\desktop\tp_laboratorio_i\tp3\menu.c
+	"menu.h"
+	<stdio.h>
+
+1604452927 source:c:\users\roberto\desktop\tp_laboratorio_i\tp3\controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+	"parser.h"
+
+1604356470 c:\users\roberto\desktop\tp_laboratorio_i\tp3\parser.h
+
+1604453369 source:c:\users\roberto\desktop\tp_laboratorio_i\tp3\employee.c
+	"Employee.h"
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<stdio.h>
+

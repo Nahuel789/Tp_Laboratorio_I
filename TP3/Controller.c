@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "LinkedList.h"
 #include "Employee.h"
+#include "parser.h"
 
 
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
@@ -78,7 +79,7 @@ int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
         exit(EXIT_FAILURE);
     }
 
-    return retorno
+    return retorno;
 }
 
 /** \brief Alta de empleados
@@ -91,32 +92,17 @@ int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
     int retorno=-1;
-    int* pEmpleado=NULL;
-    int* id;
-    int* sueldo;
-    int* horasTrabajadas;
-    char* nombre;
 
     if(pArrayListEmployee != NULL)
     {
 
+        employee_add(pArrayListEmployee);
 
-    id=ll_len(pArrayListEmployee);
-    *id=*id + 1;
-    employee_setId(pEmpleado,*id);
-
-
-    pEmpleado=employee_newParametros()
-
-
-
+        retorno=0;
 
     }
-
-
     return retorno;
 }
-
 /** \brief Modificar datos de empleado
  *
  * \param path char*
@@ -126,9 +112,16 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
-}
+    int retorno=-1;
 
+    if(pArrayListEmployee != NULL)
+    {
+        employee_edit(pArrayListEmployee);
+        retorno=0;
+    }
+
+    return retorno;
+}
 /** \brief Baja de empleado
  *
  * \param path char*
@@ -138,9 +131,16 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
-}
+    int retorno=-1;
 
+    if(pArrayListEmployee != NULL)
+    {
+        employe_delete(pArrayListEmployee);
+        retorno=0;
+    }
+
+    return retorno;
+}
 /** \brief Listar empleados
  *
  * \param path char*
@@ -150,9 +150,16 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_ListEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
-}
+    int retorno=-1;
 
+    if(pArrayListEmployee != NULL)
+    {
+        employee_listEmployees(pArrayListEmployee);
+        retorno=0;
+    }
+
+    return retorno;
+}
 /** \brief Ordenar empleados
  *
  * \param path char*
@@ -162,9 +169,16 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
-}
+    int retorno=-1;
 
+    if(pArrayListEmployee != NULL)
+    {
+
+   // employee_sort(pArrayListEmployee);
+    retorno=0;
+    }
+    return retorno;
+}
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo texto).
  *
  * \param path char*
@@ -174,14 +188,13 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
 {
-
     int retorno=-1;
     FILE* pFile;
     int tam;
-    int* auxId;
-    int* auxSueldo;
-    int* auxHorasTrabajadas;
-    char* nombre;
+    int* auxId=NULL;
+    int* auxSueldo=NULL;
+    int* auxHorasTrabajadas=NULL;
+    char nombre[25];
     Employee* pEmpleado;
 
     if(path != NULL && pArrayListEmployee != NULL)
@@ -197,10 +210,9 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
                 pEmpleado=(Employee*)ll_get(pArrayListEmployee,i);
                 if(!employee_getId(pEmpleado,auxId) && !employee_getHorasTrabajadas(pEmpleado,auxHorasTrabajadas) && !employee_getSueldo(pEmpleado,auxSueldo) && !employee_getNombre(pEmpleado,nombre))
                 {
-                    fprintf(pFile,"%d,%s,%d,%d\n",*auxId,nombre,*auxHorasTrabajadas,*auxSueldo);
+                    fprintf(pFile,"%d,%s,%d,%d\n",auxId,nombre,auxHorasTrabajadas,auxSueldo);
                     retorno=0;
                 }
-
             }
 
             fclose(pFile);
@@ -208,7 +220,6 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
     }
     return retorno;
 }
-
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo binario).
  *
  * \param path char*
@@ -240,9 +251,17 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
 
             fclose(pFile);
         }
-
-
     }
     return retorno;
 }
+static int obtenerId()
+{
+    static int id=1000;
+    id++;
+    return id;
+}
 
+int proximoId()
+{
+    return obtenerId();
+}

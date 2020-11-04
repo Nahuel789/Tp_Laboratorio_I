@@ -3,6 +3,7 @@
 #include "LinkedList.h"
 #include "Controller.h"
 #include "Employee.h"
+#include "menu.h"
 
 /****************************************************
     Menu:
@@ -17,7 +18,7 @@
      9. Guardar los datos de los empleados en el archivo data.csv (modo binario).
     10. Salir
 *****************************************************/
-int menu();
+
 
 
 int main()
@@ -37,27 +38,27 @@ int main()
                 break;
 
                  case 2:
-                controller_loadFromBinary("data.csv",listaEmpleados);
+                controller_loadFromBinary("data.bin",listaEmpleados);
                 break;
 
                  case 3:
-                controller_addEmployee();
+                controller_addEmployee(listaEmpleados);
                 break;
 
                  case 4:
-                controller_editEmployee();
+                controller_editEmployee(listaEmpleados);
                 break;
 
                  case 5:
-                controller_removeEmployee();
+                controller_removeEmployee(listaEmpleados);
                 break;
 
                  case 6:
-                controller_ListEmployee();
+                controller_ListEmployee(listaEmpleados);
                 break;
 
                  case 7:
-                controller_sortEmployee();
+               // controller_sortEmployee();
                 break;
 
                  case 8:
@@ -65,7 +66,7 @@ int main()
                 break;
 
                  case 9:
-                controller_saveAsBinary("data.csv",listaEmpleados);
+                controller_saveAsBinary("data.bin",listaEmpleados);
                 break;
         }
     }while(option != 10);
@@ -73,26 +74,3 @@ int main()
 }
 
 
-int menu();
-{
-    int opcion;
-
-     printf("MENU DE OPCIONES\n");
-     printf("1. Cargar los datos de los empleados desde el archivo data.csv (modo texto).\n");
-     printf("2. Cargar los datos de los empleados desde el archivo data.csv (modo binario).\n");
-     printf("3. Alta de empleado\n");
-     printf("4. Modificar datos de empleado\n");
-     printf("5. Baja de empleado");
-     printf("6. Listar empleados\n");
-     printf("7. Ordenar empleados\n");
-     printf("8. Guardar los datos de los empleados en el archivo data.csv (modo texto).\n");
-     printf("9. Guardar los datos de los empleados en el archivo data.csv (modo binario).\n");
-     printf("10. Salir\n");
-     printf("Ingrese la opcion deseada: \n");
-     fflush(stdin);
-     scanf("%c",&opcion);
-
-
-    return opcion;
-
-}
