@@ -1,6 +1,7 @@
 #include "menu.h"
 #include <stdio.h>
 #include "utn.h"
+#include "stdlib.h"
 
 int menu()
 {

@@ -184,6 +184,11 @@ int employee_sortById(void* employeeA,void* employeeB);
  *
  */
 int proximoId();
-
+/** \brief muestra la lista de empleados activos
+ *
+ * \param this puntero a linkedList
+ * \return retorna -1 si hay un error, o 0 si esta todo ok
+ *
+ */
 int employee_listEmployees(LinkedList* this);
 #endif // employee_H_INCLUDED

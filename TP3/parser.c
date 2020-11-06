@@ -70,13 +70,11 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
     char horaschar[128];
     if(pFile != NULL && pArrayListEmployee != NULL)
     {
-        printf("pFil != NULl");
         pEmpleado=employee_new();
-        printf("despues de crear empleado");
         do
         {
 
-        if(fread(pEmpleado,sizeof(Employee),1,pFile))
+        if(fread(pEmpleado,sizeof(Employee),1,pFile)) //LECTURA DE ARCHIVO
         {
 
             employee_getId(pEmpleado,&idx);
@@ -89,13 +87,13 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
             sprintf(sueldochar,"%d",sueldo);
 
             nuevoEmpleado=employee_newParametros(idchar,nombre,horaschar,sueldochar);
+
             ll_add(pArrayListEmployee,nuevoEmpleado);
 
-
-            retorno = 0;
+            retorno = 0;//EXITO
         }
 
-        }while(!feof(pFile));
+        }while(!feof(pFile)); //MIENTAS QUE NO TERMINE EL ARCHIVO...
 
         employee_delete(pEmpleado);
     }

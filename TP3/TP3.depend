@@ -172,7 +172,7 @@
 	<stdlib.h>
 	<string.h>
 
-1604693682 source:c:\users\roberto\desktop\tp_laboratorio_i\tp3\main.c
+1604702827 source:c:\users\roberto\desktop\tp_laboratorio_i\tp3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
@@ -182,14 +182,14 @@
 
 1604688425 c:\users\roberto\desktop\tp_laboratorio_i\tp3\linkedlist.h
 
-1604688425 c:\users\roberto\desktop\tp_laboratorio_i\tp3\controller.h
+1604702600 c:\users\roberto\desktop\tp_laboratorio_i\tp3\controller.h
 
-1604693376 c:\users\roberto\desktop\tp_laboratorio_i\tp3\employee.h
+1604702601 c:\users\roberto\desktop\tp_laboratorio_i\tp3\employee.h
 	"LinkedList.h"
 
-1604694998 c:\users\roberto\desktop\tp_laboratorio_i\tp3\menu.h
+1604702888 c:\users\roberto\desktop\tp_laboratorio_i\tp3\menu.h
 
-1604696565 source:c:\users\roberto\desktop\tp_laboratorio_i\tp3\parser.c
+1604704077 source:c:\users\roberto\desktop\tp_laboratorio_i\tp3\parser.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
@@ -201,14 +201,15 @@
 	"utn.h"
 	<string.h>
 
-1601675341 c:\users\roberto\desktop\tp_laboratorio_i\tp3\utn.h
+1604702600 c:\users\roberto\desktop\tp_laboratorio_i\tp3\utn.h
 
-1604693843 source:c:\users\roberto\desktop\tp_laboratorio_i\tp3\menu.c
+1604702629 source:c:\users\roberto\desktop\tp_laboratorio_i\tp3\menu.c
 	"menu.h"
 	<stdio.h>
 	"utn.h"
+	"stdlib.h"
 
-1604695324 source:c:\users\roberto\desktop\tp_laboratorio_i\tp3\controller.c
+1604704474 source:c:\users\roberto\desktop\tp_laboratorio_i\tp3\controller.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
@@ -217,9 +218,9 @@
 	"utn.h"
 	"menu.h"
 
-1604356470 c:\users\roberto\desktop\tp_laboratorio_i\tp3\parser.h
+1604702600 c:\users\roberto\desktop\tp_laboratorio_i\tp3\parser.h
 
-1604693682 source:c:\users\roberto\desktop\tp_laboratorio_i\tp3\employee.c
+1604703849 source:c:\users\roberto\desktop\tp_laboratorio_i\tp3\employee.c
 	<stdlib.h>
 	"Employee.h"
 	<string.h>

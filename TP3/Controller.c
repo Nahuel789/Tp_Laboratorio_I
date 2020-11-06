@@ -13,7 +13,7 @@
  * \return int
  *
  */
-int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
+int controller_loadFromText(char* path, LinkedList* pArrayListEmployee) //CARGA DE ARCHIVO DE TEXTO
 {
     int retorno=-1;
     FILE* pFile;
@@ -21,17 +21,17 @@ int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
 
     if(path != NULL && pArrayListEmployee != NULL)
     {
-        pFile=fopen(path,"r");
+        pFile=fopen(path,"r");//ABRE EL ARCHIVO
 
         if(pFile != NULL)
         {
-            if(!parser_EmployeeFromText(pFile,pArrayListEmployee))
+            if(!parser_EmployeeFromText(pFile,pArrayListEmployee)) //PARSEA LOS DATOS
             {
-                retorno=0;
+                retorno=0; //EXITO
             }
 
 
-            fclose(pFile);
+            fclose(pFile); //CIERRE DE ARCHIVO
         }
     }
     else
@@ -56,13 +56,13 @@ int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
 
     if(path != NULL && pArrayListEmployee != NULL)
     {
-        pFile=fopen(path,"rb");
+        pFile=fopen(path,"rb"); //ABRE EL ARCHIVO
 
         if(pFile != NULL)
         {
-            if(!parser_EmployeeFromBinary(pFile,pArrayListEmployee))
+            if(!parser_EmployeeFromBinary(pFile,pArrayListEmployee)) // PARSEA LOS DATOS BINARIOS
             {
-                retorno=0;
+                retorno=0; // EXITO
             }
         }
 
@@ -74,7 +74,7 @@ int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
         exit(EXIT_FAILURE);
     }
 
-    fclose(pFile);
+    fclose(pFile); //CIERRE DEL ARCHIVO
 
     return retorno;
 }
@@ -93,9 +93,12 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
     if(pArrayListEmployee != NULL)
     {
 
-        employee_add(pArrayListEmployee);
 
-        retorno=0;
+        if(!employee_add(pArrayListEmployee)) //ALTA EMPLEADO
+        {
+        retorno=0; //EXITO
+        }
+
 
     }
     return retorno;
@@ -113,8 +116,10 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 
     if(pArrayListEmployee != NULL)
     {
-        employee_edit(pArrayListEmployee);
-        retorno=0;
+        if(!employee_edit(pArrayListEmployee)) //EDITAR EMPLEADOS
+        {
+        retorno=0; //EXITO
+        }
     }
 
     return retorno;
@@ -132,8 +137,11 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
 
     if(pArrayListEmployee != NULL)
     {
-        employe_delete(pArrayListEmployee);
-        retorno=0;
+        if(!employe_delete(pArrayListEmployee)) //REMUEVE UN EMPLEADO DE LA LISTA
+        {
+            retorno=0; //EXITO
+        }
+
     }
 
     return retorno;
@@ -151,10 +159,10 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
 
     if(pArrayListEmployee != NULL)
     {
-        printf("*LISTA DE EMPLEADOS*\n");
-        printf("ID          NOMBRE    HORAS SALARIO\n");
-        employee_listEmployees(pArrayListEmployee);
-        retorno=0;
+        if(!employee_listEmployees(pArrayListEmployee)) //LISTA DE EMPLEADOS
+        {
+        retorno=0; //EXITO
+        }
     }
 
     return retorno;
@@ -175,78 +183,76 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
     {
         system("cls");
 
-        printf("ORDENAMIENTO DE EMPLEADOS\n");
-
-            switch(menuSort())
+        switch(menuSort()) //MENU DE ORDENAMIENTO
+        {
+        case 1:
+            system("cls");
+            if(!utn_getNumero(&aux,"Ingrese el orden (1.ascendente/0.descendente): \n","Error. Reingrese : \n",0,1,3))
             {
-            case 1:
-                system("cls");
-                if(!utn_getNumero(&aux,"Ingrese el orden (1.ascendente/0.descendente): \n","Error. Reingrese : \n",0,1,3))
+                if(!ll_sort(pArrayListEmployee,employee_sortById,aux))
                 {
-                    if(!ll_sort(pArrayListEmployee,employee_sortById,aux))
-                    {
-                        printf("Ordenamiento por ID realizado con exito\n");
-                        retorno=0;
-                    }
-                    else
-                    {
-                        printf("Fallo al ordenar por id\n");
-                    }
+                    printf("Ordenamiento por ID realizado con exito\n");
+                    retorno=0; //EXITO
                 }
-
-
-                break;
-            case 2:
-                system("cls");
-                if(!utn_getNumero(&aux,"Ingrese el orden (1.ascendente/0.descendente): \n","Error. Reingrese : \n",0,1,3))
+                else
                 {
-                    if(!ll_sort(pArrayListEmployee,employee_sortByName,aux))
-                    {
-                        printf("Ordenamiento por nombre realizado con exito\n");
-                        retorno=0;
-                    }
-                    else
-                    {
-                        printf("Fallo al ordenar por nombre\n");
-                    }
+                    printf("Fallo al ordenar por id\n");
                 }
-                break;
-
-            case 3:
-                system("cls");
-                if(!utn_getNumero(&aux,"Ingrese el orden (1.ascendente/0.descendente): \n","Error. Reingrese : \n",0,1,3))
-                {
-
-                    if(!ll_sort(pArrayListEmployee,employee_sortByHoursWorked,aux))
-                    {
-                       printf("Ordenamiento por horas realizado con exito\n");
-                       retorno=0;
-                    }
-                    else
-                    {
-                        printf("Fallo al ordenar por horas\n");
-                    }
-
-                }
-                break;
-
-            case 4:
-                system("cls");
-                if(!utn_getNumero(&aux,"Ingrese el orden (1.ascendente/0.descendente): \n","Error. Reingrese : \n",0,1,3))
-                {
-                    if(!ll_sort(pArrayListEmployee,employee_sortBySalary,aux))
-                    {
-                        printf("Ordenamiento por salario realizado con exito\n");
-                        retorno=0;
-                    }
-                    else
-                    {
-                        printf("Fallo al ordenar por salario\n");
-                    }
-
-                }
-                break;
             }
+
+
+            break;
+        case 2:
+            system("cls");
+            if(!utn_getNumero(&aux,"Ingrese el orden (1.ascendente/0.descendente): \n","Error. Reingrese : \n",0,1,3))
+            {
+                if(!ll_sort(pArrayListEmployee,employee_sortByName,aux))
+                {
+                    printf("Ordenamiento por nombre realizado con exito\n");
+                    retorno=0; //EXITO
+                }
+                else
+                {
+                    printf("Fallo al ordenar por nombre\n");
+                }
+            }
+            break;
+
+        case 3:
+            system("cls");
+            if(!utn_getNumero(&aux,"Ingrese el orden (1.ascendente/0.descendente): \n","Error. Reingrese : \n",0,1,3))
+            {
+
+                if(!ll_sort(pArrayListEmployee,employee_sortByHoursWorked,aux))
+                {
+                    printf("Ordenamiento por horas realizado con exito\n");
+                    retorno=0;//EXITO
+                }
+                else
+                {
+                    printf("Fallo al ordenar por horas\n");
+                }
+
+            }
+            break;
+
+        case 4:
+            system("cls");
+            if(!utn_getNumero(&aux,"Ingrese el orden (1.ascendente/0.descendente): \n","Error. Reingrese : \n",0,1,3))
+            {
+                if(!ll_sort(pArrayListEmployee,employee_sortBySalary,aux))
+                {
+                    printf("Ordenamiento por salario realizado con exito\n");
+                    retorno=0;//EXITO
+                }
+                else
+                {
+                    printf("Fallo al ordenar por salario\n");
+                }
+
+            }
+            break;
+        }
 
 
     }
@@ -271,37 +277,29 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
     Employee* pEmpleado=NULL;
     tam=ll_len(pArrayListEmployee);
 
-    printf("%d tam es\n",tam);
-
     if(path != NULL && pArrayListEmployee != NULL)
     {
-        printf("RETORNO 1= %d    PATH != PARRAY != NULL\n",retorno);
-        pFile=fopen(path,"w");
+        pFile=fopen(path,"w"); //ABRE EL ARCHIVO EN EL QUE VA A GUARDAR LA INFORMACION
 
         if(pFile != NULL)
         {
-            printf("VALIDACION DE PFILE  %d",retorno);
-
             fprintf(pFile,"id,nombre,horas Trabajadas,sueldo\n");
 
             for(int i=0; i<tam; i++)
             {
-                printf("entre en el for %d veces",i);
                 pEmpleado=(Employee*)ll_get(pArrayListEmployee,i);
 
                 if(pEmpleado != NULL)
                 {
-                    printf("P EMPLEADO DISTINTO DE NULL  %d veces" ,i);
-
-                if(!employee_getId(pEmpleado,&auxId) && !employee_getHorasTrabajadas(pEmpleado,&auxHorasTrabajadas) && !employee_getSueldo(pEmpleado,&auxSueldo) && !employee_getNombre(pEmpleado,nombre))
-                {
-                    fprintf(pFile,"%d,%s,%d,%d\n",auxId,nombre,auxHorasTrabajadas,auxSueldo);
-                    retorno=0;
-                }
+                    if(!employee_getId(pEmpleado,&auxId) && !employee_getHorasTrabajadas(pEmpleado,&auxHorasTrabajadas) && !employee_getSueldo(pEmpleado,&auxSueldo) && !employee_getNombre(pEmpleado,nombre))
+                    {
+                        fprintf(pFile,"%d,%s,%d,%d\n",auxId,nombre,auxHorasTrabajadas,auxSueldo);
+                        retorno=0; //EXITO
+                    }
 
                 }
             }
-            fclose(pFile);
+            fclose(pFile); //CIERRE DE ARCHIVO
         }
     }
     return retorno;
@@ -323,7 +321,7 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
 
     if(path != NULL && pArrayListEmployee != NULL)
     {
-        pFile=fopen(path,"wb");
+        pFile=fopen(path,"wb"); //ABRE EL ARCHIVO EN EL QUE VA A GUARDAR LA INFORMACION
 
         if(pFile != NULL)
         {
@@ -333,13 +331,13 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
 
                 if(pEmpleado != NULL)
                 {
-                fwrite(pEmpleado,sizeof(Employee),1,pFile);
-                retorno=0;
+                    fwrite(pEmpleado,sizeof(Employee),1,pFile);
+                    retorno=0; //EXITO
                 }
 
             }
 
-            fclose(pFile);
+            fclose(pFile); //CIERRA EL ARCHIVO
         }
     }
     return retorno;

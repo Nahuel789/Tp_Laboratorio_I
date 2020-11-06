@@ -35,7 +35,7 @@ int main()
 
         switch(menu())
         {
-        case 1:
+        case 1: //CARGA DE ARCHIVO DE TEXTO
             system("cls");
             if(!controller_loadFromText("data.csv",listaEmpleados))
             {
@@ -44,7 +44,7 @@ int main()
             }
             system("pause");
             break;
-        case 2:
+        case 2://CARGA DE ARCHIVO BINARIO
             system("cls");
             if(!controller_loadFromBinary("data.bin",listaEmpleados))
             {
@@ -55,7 +55,7 @@ int main()
             system("pause");
             break;
 
-        case 3:
+        case 3://ALTA DE EMPLEADO
             system("cls");
 
             if(!controller_addEmployee(listaEmpleados))
@@ -66,7 +66,7 @@ int main()
             system("pause");
             break;
 
-        case 4:
+        case 4://EDICION DE EMPLEADOS
             system("cls");
             if(flagAdd || flagLoadBin || flagLoadText)
             {
@@ -77,13 +77,13 @@ int main()
             }
             else
             {
-                printf("Primero cargar un empleado\n");
+                printf("Cargar un empleado si desea editar\n");
             }
 
             system("pause");
             break;
 
-        case 5:
+        case 5://REMOVER EMPLEADO
             system("cls");
 
             if(flagAdd || flagLoadBin || flagLoadText)
@@ -96,12 +96,12 @@ int main()
 
             }else
             {
-                printf("Primero cargar un empleado\n");
+                printf("Cargar un empleado si desea remover\n");
             }
             system("pause");
             break;
 
-        case 6:
+        case 6://LISTA DE EMPLEADOS
             system("cls");
 
             if(flagAdd || flagLoadBin || flagLoadText)
@@ -110,12 +110,12 @@ int main()
 
             }else
             {
-                printf("Primero cargar un empleado\n");
+                printf("Cargar un empleado si desea listar\n");
             }
             system("pause");
             break;
 
-        case 7:
+        case 7://ORDENAMIENTO DE EMPLEADOS
             system("cls");
             if(flagAdd || flagLoadBin || flagLoadText)
             {
@@ -127,30 +127,48 @@ int main()
 
             }else
             {
-                printf("Primero cargar un empleado\n");
+                printf("Cargar un empleado si desea ordenar\n");
             }
             system("pause");
             break;
 
-        case 8:
+        case 8://SALVAR COMO TEXTO
             system("cls");
+
+            if(flagAdd || flagLoadBin || flagLoadText)
+            {
             if(!controller_saveAsText("data.csv",listaEmpleados))
             {
                 printf("Guardado como texto con exito!\n");
             }
+
+            }else
+            {
+                printf("Cargar empleados si desea guardar en archivo csv\n");
+            }
+
             system("pause");
             break;
 
-        case 9:
+        case 9://SALVAR COMO BINARIO
             system("cls");
+
+             if(flagAdd || flagLoadBin || flagLoadText)
+            {
+
             if(!controller_saveAsBinary("data.bin",listaEmpleados))
             {
                 printf("Guardado como binario con exito!\n");
             }
+
+            }else
+            {
+                printf("Cargar empleados si desea guardar en archivo binario\n");
+            }
             system("pause");
             break;
 
-        case 10:
+        case 10: //SALIR
             system("cls");
             seguir='n';
             break;

@@ -75,11 +75,17 @@ int utn_getCadena(char *pAux, int len, int retry, char* mensaje, char* mensajeEr
 
 int getCadena(char* pAux, int len);
 
+/** \brief Indica si la cadena es alfanumerica
+ *
+ * \param str cadena de caracteres
+ * \return 1 si esta todo ok, 0 si hay un error
+ *
+ */
+int esAlfaNumerico(char str[]);
 /* FUNCIONES NO USADAS
 
 int esNumerico(char str[]);
 int esTelefono(char str[]);
-int esAlfaNumerico(char str[]);
 int esSoloLetras(char str[]);
 
 */
