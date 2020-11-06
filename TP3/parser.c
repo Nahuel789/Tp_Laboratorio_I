@@ -16,21 +16,15 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
     char nombre[100];
     char horasTrabajadas[100];
     char sueldo[100];
-    int aux;
     int retorno=-1;
     Employee* pEmpleado;
 
     if(pFile!=NULL && pArrayListEmployee !=NULL)
     {
-
-        fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",id,nombre,horasTrabajadas,sueldo);//PRIMERA LINEA
-
+        fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",id,nombre,horasTrabajadas,sueldo);
         do
         {
-
-        aux=fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",id,nombre,horasTrabajadas,sueldo);
-
-        if(aux == 4)
+        if((fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",id,nombre,horasTrabajadas,sueldo))== 4)
         {
             pEmpleado=employee_newParametros(id,nombre,horasTrabajadas,sueldo);
 
@@ -39,15 +33,11 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
                   ll_add(pArrayListEmployee,pEmpleado);
                   retorno=0;
             }
-
         }
         else
             break;
 
         }while(!feof(pFile));
-
-        fclose(pFile);
-
 
 
     }
@@ -56,7 +46,6 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
         printf("No existe el archivo\n");
          exit(EXIT_FAILURE);
     }
-
     return retorno;
 }
 
@@ -70,24 +59,14 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 {
     int retorno=-1;
-    int aux;
-
     Employee* pEmpleado=NULL;
 
     if(pFile != NULL && pArrayListEmployee != NULL)
     {
-
-
-
+        pEmpleado=employee_new();
         do
         {
-            pEmpleado=employee_new();
-
-            fread(pEmpleado,sizeof(Employee),1,pFile);//primeraLinea;
-
-        aux=fread(pEmpleado,sizeof(Employee),1,pFile);
-
-        if(aux == 1)
+        if(fread(pEmpleado,sizeof(Employee),1,pFile))
         {
             ll_add(pArrayListEmployee,pEmpleado);
             retorno = 0;
@@ -96,7 +75,7 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
         }while(!feof(pFile));
 
 
-        fclose(pFile);
+
 
     }
 

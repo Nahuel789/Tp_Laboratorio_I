@@ -333,8 +333,9 @@ int utn_getCadena(char *pAux, int len, int intentos, char* mensaje, char* mensaj
         do{
         	printf("%s", mensaje);
 
-            if((getCadena(auxString, len)) == 0 && (esSoloLetras(auxString))== 1 )
+            if((getCadena(auxString, len)) == 0 && (esAlfaNumerico(auxString))== 1 )
             {
+                fflush(stdin);
                 strncpy(pAux, auxString, len);
                 retorno = 0; //exito
                 break;
@@ -358,7 +359,7 @@ int getCadena(char* pAux, int len)
 
     if (pAux != NULL && len > 0)
     {
-       // fpurge(stdin);
+        fflush(stdin);
         fgets(auxString,sizeof(auxString),stdin);
 
         if (auxString[strlen(auxString)-1]=='\n')

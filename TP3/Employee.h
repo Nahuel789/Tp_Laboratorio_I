@@ -30,11 +30,17 @@ int employee_edit(LinkedList* this);
 
 int employee_findById(LinkedList* this, int id);
 
+
 int employee_changeName(Employee* this);
 int employee_changeSalary(Employee* this);
 int employee_changeHoursWorked(Employee* this);
 
 int employe_delete(LinkedList* this);
+
+int employee_sortByName(void* employeeA,void* employeeB);
+int employee_sortBySalary(void* employeeA,void* employeeB);
+int employee_sortByHoursWorked(void* employeeA,void* employeeB);
+int employee_sortById(void* employeeA,void* employeeB);
 
 
 

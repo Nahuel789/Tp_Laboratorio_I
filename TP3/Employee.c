@@ -1,8 +1,9 @@
-#include "Employee.h"
 #include <stdlib.h>
+#include "Employee.h"
 #include <string.h>
 #include <ctype.h>
 #include <stdio.h>
+#include "utn.h"
 
 Employee* employee_new()
 {
@@ -44,6 +45,7 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
 void employee_delete(Employee* this)
 {
     free(this);
+    this=NULL;
 }
 
 int employee_setId(Employee* this,int id)
@@ -93,7 +95,7 @@ int employee_getNombre(Employee* this,char* nombre)
 
     if(this!=NULL && nombre !=NULL)
     {
-        nombre=this->nombre;
+        strcpy(nombre,this->nombre);
         retorno=0;
     }
 
@@ -158,19 +160,16 @@ int employee_add(LinkedList* this)
     char horasTrabajadas[128];
     char sueldo[128];
     char id[128];
-    int nextId=proximoId();
-
 
     if(this != NULL)
     {
+        sprintf(id,"%d",proximoId());
 
-        itoa(nextId,id,10);
-
-        if(!utn_getCadena(nombre,128,1,"Ingrese el nombre del empleado: ","Error,reingrese: "))
+        if(!utn_getCadena(nombre,sizeof(nombre),1,"Ingrese el nombre del empleado: ","Error,reingrese: "))
         {
-            if(!utn_getCadena(horasTrabajadas,128,1,"Ingrese las horas trabajadas por este empleado : ","Error.Reingrese: "))
+            if(!utn_getCadena(horasTrabajadas,sizeof(horasTrabajadas),1,"Ingrese las horas trabajadas por este empleado : ","Error.Reingrese: "))
             {
-                if(!utn_getCadena(sueldo,128,1,"Ingrese el sueldo del empleado: ","Error.Reingrese: "))
+                if(!utn_getCadena(sueldo,sizeof(sueldo),1,"Ingrese el sueldo del empleado: ","Error.Reingrese: "))
                 {
                     pEmpleado=employee_newParametros(id,nombre,horasTrabajadas,sueldo);
 
@@ -226,9 +225,10 @@ int employee_edit(LinkedList* this)
                     employee_changeHoursWorked(pEmpleado);
                     system("pause");
                     break;
+
                 }
 
-                 retorno=0;
+                retorno=0;
             }
 
 
@@ -284,9 +284,9 @@ int employee_changeSalary(Employee* this)
 
     if(this != NULL)
     {
-    utn_getNumero(&salary,"Ingrese el nuevo salario del empleado: \n","Error.Reingrese: \n",0,10000000,1);
-    employee_setSueldo(this,salary);
-    retorno=0;
+        utn_getNumero(&salary,"Ingrese el nuevo salario del empleado: \n","Error.Reingrese: \n",0,10000000,1);
+        employee_setSueldo(this,salary);
+        retorno=0;
     }
 
     return retorno;
@@ -298,9 +298,9 @@ int employee_changeHoursWorked(Employee* this)
 
     if(this != NULL)
     {
-    utn_getNumero(&hoursWorked,"Ingrese el nuevo salario: \n","Error.Reingrese: \n",0,160,1);
-    employee_setHorasTrabajadas(this,hoursWorked);
-    retorno=0;
+        utn_getNumero(&hoursWorked,"Ingrese el nuevo salario: \n","Error.Reingrese: \n",0,160,1);
+        employee_setHorasTrabajadas(this,hoursWorked);
+        retorno=0;
     }
     return retorno;
 }
@@ -331,57 +331,144 @@ int employee_listEmployees(LinkedList* this)
 {
     int retorno=-1;
     Employee* pEmpleado=NULL;
+    int auxId;
+    char nombre[50];
+    int horasTrabajadas;
+    int salario;
 
     if(this != NULL)
     {
-        for(int i=0;i<ll_len(this);i++)
+        for(int i=0; i<ll_len(this); i++)
         {
-           pEmpleado=(Employee*)ll_get(this,i);
-           employee_print(pEmpleado);
+            pEmpleado=(Employee*)ll_get(this,i);
+
+            employee_getId(pEmpleado,&auxId);
+            employee_getNombre(pEmpleado,nombre);
+            employee_getHorasTrabajadas(pEmpleado,&horasTrabajadas);
+            employee_getSueldo(pEmpleado,&salario);
+            printf("%2d   %15s    %2d    %2d \n",auxId,nombre,horasTrabajadas,salario);
+            pEmpleado=NULL;
+            retorno=0;
+        }
+
+
+    }
+    return retorno;
+}
+
+int employee_sortByName(void* employeeA,void* employeeB)
+{
+    int retorno=0;
+    Employee* pEmpA;
+    Employee* pEmpB;
+
+    if(employeeA != NULL && employeeB != NULL)
+    {
+        pEmpA=(Employee*)employeeA;
+        pEmpB=(Employee*)employeeB;
+
+        retorno=strcmp(pEmpA->nombre,pEmpB->nombre);
+
+    }
+
+   return retorno;
+}
+
+int employee_sortBySalary(void* employeeA,void* employeeB)
+{
+    int retorno=0;
+    Employee* pEmpA;
+    Employee* pEmpB;
+
+    if(employeeA != NULL && employeeB != NULL)
+    {
+        pEmpA=(Employee*)employeeA;
+        pEmpB=(Employee*)employeeB;
+
+        if(pEmpA->sueldo == pEmpB->sueldo)
+        {
            retorno=0;
         }
-
-
-    }
-    return retorno;
-}
-
-int employee_print(Employee* this)
-{
-    int retorno=-1;
-
-    if(this != NULL)
-    {
-        printf("%d    %s    %d       %d\n", this->id,this->nombre,this->horasTrabajadas,this->sueldo);
-    }
-
-    return retorno;
-
-
-}
-/*
-int employee_sort(LinkedList* this)
-{
-    int retorno=-1;
-
-    if(this != NULL)
-    {
-        for(int i=0;i<ll_len();i++)
+        else if(pEmpA->sueldo > pEmpB->sueldo)
         {
+            retorno=1;
+        }
+        else
+        {
+            retorno=-1;
+        }
+    }
+
+   return retorno;
+}
+int employee_sortById(void* employeeA,void* employeeB)
+{
+    int retorno=0;
+
+    Employee* pEmpA;
+    Employee* pEmpB;
+
+    if(employeeA != NULL && employeeB != NULL)
+    {
+
+        pEmpA=(Employee*)employeeA;
+        pEmpB=(Employee*)employeeB;
 
 
-            for()
-
-
-
-
-
+        if(pEmpA->id == pEmpB->id)
+        {
+           retorno=0;
+        }
+        else if(pEmpA->id > pEmpB->id)
+        {
+            retorno=1;
+        }
+        else
+        {
+            retorno=-1;
         }
 
-        retorno=0;
     }
 
-    return retorno;
-
+   return retorno;
 }
-*/
+
+int employee_sortByHoursWorked(void* employeeA,void* employeeB)
+{
+    int retorno=0;
+
+    Employee* pEmpA;
+    Employee* pEmpB;
+
+    if(employeeA != NULL && employeeB != NULL)
+    {
+        pEmpA=(Employee*)employeeA;
+        pEmpB=(Employee*)employeeB;
+
+        if(pEmpA->horasTrabajadas == pEmpB->horasTrabajadas)
+        {
+           retorno=0;
+        }
+        else if(pEmpA->horasTrabajadas > pEmpB->horasTrabajadas)
+        {
+            retorno=1;
+        }
+        else
+        {
+            retorno=-1;
+        }
+    }
+   return retorno;
+}
+
+static int obtenerId()
+{
+    static int id=1000;
+    id++;
+    return id;
+}
+
+int proximoId()
+{
+    return obtenerId();
+}
