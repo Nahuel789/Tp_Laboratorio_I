@@ -3,7 +3,8 @@
 #include "LinkedList.h"
 #include "Employee.h"
 #include "parser.h"
-
+#include "utn.h"
+#include "menu.h"
 
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
  *
@@ -26,26 +27,20 @@ int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
         {
             if(!parser_EmployeeFromText(pFile,pArrayListEmployee))
             {
-                printf("parser ok\n");
-                system("pause");
                 retorno=0;
             }
 
 
             fclose(pFile);
         }
-
-
     }
     else
     {
         printf("No se pudo abrir el archivo\n");
         exit(EXIT_FAILURE);
     }
-
     return retorno;
 }
-
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo binario).
  *
 
@@ -56,12 +51,12 @@ int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
 int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
 {
     int retorno=-1;
-    FILE* pFile;
+    FILE* pFile=NULL;
 
 
     if(path != NULL && pArrayListEmployee != NULL)
     {
-        pFile=fopen(path,"r");
+        pFile=fopen(path,"rb");
 
         if(pFile != NULL)
         {
@@ -69,17 +64,17 @@ int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
             {
                 retorno=0;
             }
-
-
-            fclose(pFile);
         }
 
     }
+
     else
     {
         printf("No se pudo abrir el archivo\n");
         exit(EXIT_FAILURE);
     }
+
+    fclose(pFile);
 
     return retorno;
 }
@@ -175,7 +170,6 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
     int retorno=-1;
     int aux;
-    char seguir = 's';
 
     if(pArrayListEmployee != NULL)
     {
@@ -189,7 +183,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
                 system("cls");
                 if(!utn_getNumero(&aux,"Ingrese el orden (1.ascendente/0.descendente): \n","Error. Reingrese : \n",0,1,3))
                 {
-                    if(ll_sort(pArrayListEmployee,employee_sortById,aux))
+                    if(!ll_sort(pArrayListEmployee,employee_sortById,aux))
                     {
                         printf("Ordenamiento por ID realizado con exito\n");
                         retorno=0;
@@ -206,7 +200,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
                 system("cls");
                 if(!utn_getNumero(&aux,"Ingrese el orden (1.ascendente/0.descendente): \n","Error. Reingrese : \n",0,1,3))
                 {
-                    if(ll_sort(pArrayListEmployee,employee_sortByName,aux))
+                    if(!ll_sort(pArrayListEmployee,employee_sortByName,aux))
                     {
                         printf("Ordenamiento por nombre realizado con exito\n");
                         retorno=0;
@@ -223,7 +217,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
                 if(!utn_getNumero(&aux,"Ingrese el orden (1.ascendente/0.descendente): \n","Error. Reingrese : \n",0,1,3))
                 {
 
-                    if(ll_sort(pArrayListEmployee,employee_sortByHoursWorked,aux))
+                    if(!ll_sort(pArrayListEmployee,employee_sortByHoursWorked,aux))
                     {
                        printf("Ordenamiento por horas realizado con exito\n");
                        retorno=0;
@@ -240,7 +234,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
                 system("cls");
                 if(!utn_getNumero(&aux,"Ingrese el orden (1.ascendente/0.descendente): \n","Error. Reingrese : \n",0,1,3))
                 {
-                    if(ll_sort(pArrayListEmployee,employee_sortBySalary,aux))
+                    if(!ll_sort(pArrayListEmployee,employee_sortBySalary,aux))
                     {
                         printf("Ordenamiento por salario realizado con exito\n");
                         retorno=0;
@@ -270,34 +264,43 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
     int retorno=-1;
     FILE* pFile;
     int tam;
-    int* auxId=NULL;
-    int* auxSueldo=NULL;
-    int* auxHorasTrabajadas=NULL;
+    int auxId;
+    int auxSueldo;
+    int auxHorasTrabajadas;
     char nombre[25];
-    Employee* pEmpleado;
+    Employee* pEmpleado=NULL;
+    tam=ll_len(pArrayListEmployee);
+
+    printf("%d tam es\n",tam);
 
     if(path != NULL && pArrayListEmployee != NULL)
     {
+        printf("RETORNO 1= %d    PATH != PARRAY != NULL\n",retorno);
         pFile=fopen(path,"w");
 
         if(pFile != NULL)
         {
-            tam=ll_len(pArrayListEmployee);
+            printf("VALIDACION DE PFILE  %d",retorno);
 
             fprintf(pFile,"id,nombre,horas Trabajadas,sueldo\n");
 
             for(int i=0; i<tam; i++)
             {
+                printf("entre en el for %d veces",i);
                 pEmpleado=(Employee*)ll_get(pArrayListEmployee,i);
-                if(!employee_getId(pEmpleado,auxId) && !employee_getHorasTrabajadas(pEmpleado,auxHorasTrabajadas) && !employee_getSueldo(pEmpleado,auxSueldo) && !employee_getNombre(pEmpleado,nombre))
+
+                if(pEmpleado != NULL)
+                {
+                    printf("P EMPLEADO DISTINTO DE NULL  %d veces" ,i);
+
+                if(!employee_getId(pEmpleado,&auxId) && !employee_getHorasTrabajadas(pEmpleado,&auxHorasTrabajadas) && !employee_getSueldo(pEmpleado,&auxSueldo) && !employee_getNombre(pEmpleado,nombre))
                 {
                     fprintf(pFile,"%d,%s,%d,%d\n",auxId,nombre,auxHorasTrabajadas,auxSueldo);
                     retorno=0;
                 }
+
+                }
             }
-
-
-
             fclose(pFile);
         }
     }
@@ -316,6 +319,7 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
     FILE* pFile;
     int tam;
     Employee* pEmpleado;
+    tam=ll_len(pArrayListEmployee);
 
     if(path != NULL && pArrayListEmployee != NULL)
     {
@@ -323,13 +327,16 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
 
         if(pFile != NULL)
         {
-            tam=ll_len(pArrayListEmployee);
-
             for(int i=0; i<tam; i++)
             {
                 pEmpleado=(Employee*)ll_get(pArrayListEmployee,i);
+
+                if(pEmpleado != NULL)
+                {
                 fwrite(pEmpleado,sizeof(Employee),1,pFile);
                 retorno=0;
+                }
+
             }
 
             fclose(pFile);

@@ -47,7 +47,6 @@ int menuSort()
 
     printf("MENU DE OPCIONES DE ORDENAMIENTO\n");
     utn_getNumero(&opcion,"1)Ordenar Por id\n2)Ordenar por nombre\n3)Ordenar por horas trabajadas\n4)Ordenar por sueldo\nIngrese la opcion que desee: \n","Error,reingrese",1,4,1);
-    utn_getNumero(&opcion,"1)Ordenar Por id\n2)Ordenar por nombre\n3)Ordenar por horas trabajadas\n4)Ordenar por sueldo\nIngrese la opcion que desee: \n","Error,reingrese",1,4,1);
 
     return opcion;
 }

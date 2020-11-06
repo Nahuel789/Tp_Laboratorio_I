@@ -59,24 +59,45 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 {
     int retorno=-1;
-    Employee* pEmpleado=NULL;
-
+    Employee* pEmpleado;
+    Employee* nuevoEmpleado;
+    int idx;
+    char nombre[128];
+    int horas;
+    int sueldo;
+    char idchar[128];
+    char sueldochar[128];
+    char horaschar[128];
     if(pFile != NULL && pArrayListEmployee != NULL)
     {
+        printf("pFil != NULl");
         pEmpleado=employee_new();
+        printf("despues de crear empleado");
         do
         {
+
         if(fread(pEmpleado,sizeof(Employee),1,pFile))
         {
-            ll_add(pArrayListEmployee,pEmpleado);
+
+            employee_getId(pEmpleado,&idx);
+            employee_getHorasTrabajadas(pEmpleado,&horas);
+            employee_getSueldo(pEmpleado,&sueldo);
+            employee_getNombre(pEmpleado,nombre);
+
+            sprintf(idchar,"%d",idx);
+            sprintf(horaschar,"%d",horas);
+            sprintf(sueldochar,"%d",sueldo);
+
+            nuevoEmpleado=employee_newParametros(idchar,nombre,horaschar,sueldochar);
+            ll_add(pArrayListEmployee,nuevoEmpleado);
+
+
             retorno = 0;
         }
 
         }while(!feof(pFile));
 
-
-
-
+        employee_delete(pEmpleado);
     }
 
     return retorno;

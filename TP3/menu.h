@@ -6,3 +6,4 @@
 #endif // MENU_H_INCLUDED
 int menu();
 int menuModificacion();
+int menuSort();

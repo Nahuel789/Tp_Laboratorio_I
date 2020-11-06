@@ -24,6 +24,9 @@
 int main()
 {
     char seguir='s';
+    int flagLoadBin=0;
+    int flagLoadText=0;
+    int flagAdd=0;
 
     LinkedList* listaEmpleados = ll_newLinkedList();
     do
@@ -33,46 +36,99 @@ int main()
         switch(menu())
         {
         case 1:
+            system("cls");
             if(!controller_loadFromText("data.csv",listaEmpleados))
             {
-                printf("cargo ok\n");
-                system("pause");
+                printf("Archivo de texto cargado con exito\n");
+                flagLoadText=1;
             }
+            system("pause");
             break;
-
         case 2:
             system("cls");
-            controller_loadFromBinary("data.bin",listaEmpleados);
+            if(!controller_loadFromBinary("data.bin",listaEmpleados))
+            {
+                printf("Archivo binario cargado con exito!\n");
+                flagLoadBin=1;
+
+            }
             system("pause");
             break;
 
         case 3:
             system("cls");
-            controller_addEmployee(listaEmpleados);
+
+            if(!controller_addEmployee(listaEmpleados))
+            {
+                printf("Empleado cargado con exito!\n");
+                flagAdd=1;
+            }
             system("pause");
             break;
 
         case 4:
             system("cls");
-            controller_editEmployee(listaEmpleados);
+            if(flagAdd || flagLoadBin || flagLoadText)
+            {
+            if(!controller_editEmployee(listaEmpleados))
+            {
+                printf("Empleado editado con exito!\n");
+            }
+            }
+            else
+            {
+                printf("Primero cargar un empleado\n");
+            }
+
             system("pause");
             break;
 
         case 5:
             system("cls");
-            controller_removeEmployee(listaEmpleados);
+
+            if(flagAdd || flagLoadBin || flagLoadText)
+            {
+
+            if(!controller_removeEmployee(listaEmpleados))
+            {
+                printf("Empleado eliminado con exito!\n");
+            }
+
+            }else
+            {
+                printf("Primero cargar un empleado\n");
+            }
             system("pause");
             break;
 
         case 6:
             system("cls");
+
+            if(flagAdd || flagLoadBin || flagLoadText)
+            {
             controller_ListEmployee(listaEmpleados);
+
+            }else
+            {
+                printf("Primero cargar un empleado\n");
+            }
             system("pause");
             break;
 
         case 7:
             system("cls");
-            controller_sortEmployee(listaEmpleados);
+            if(flagAdd || flagLoadBin || flagLoadText)
+            {
+
+            if(!controller_sortEmployee(listaEmpleados))
+            {
+                printf("ordenamiento exitoso!\n");
+            }
+
+            }else
+            {
+                printf("Primero cargar un empleado\n");
+            }
             system("pause");
             break;
 
@@ -80,7 +136,7 @@ int main()
             system("cls");
             if(!controller_saveAsText("data.csv",listaEmpleados))
             {
-                printf("Guardado como texto con exito\n");
+                printf("Guardado como texto con exito!\n");
             }
             system("pause");
             break;
@@ -89,14 +145,13 @@ int main()
             system("cls");
             if(!controller_saveAsBinary("data.bin",listaEmpleados))
             {
-              printf("Guardado como binario con exito\n");
+                printf("Guardado como binario con exito!\n");
             }
             system("pause");
             break;
 
         case 10:
             system("cls");
-
             seguir='n';
             break;
         }
@@ -104,5 +159,3 @@ int main()
     while(seguir == 's');
     return 0;
 }
-
-

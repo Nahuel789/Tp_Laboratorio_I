@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include "utn.h"
+#include "menu.h"
 
 Employee* employee_new()
 {
@@ -195,7 +196,6 @@ int employee_edit(LinkedList* this)
 
     if(this != NULL)
     {
-        //employe_print();
 
         utn_getNumero(&aux,"Ingrese el id que quiere: \n","Error.Reingrese:",1,ll_len(this),1);
 
@@ -238,8 +238,6 @@ int employee_edit(LinkedList* this)
 
     return retorno;
 }
-
-
 int employee_findById(LinkedList* this, int id)
 {
     int indice = -1;
@@ -309,7 +307,6 @@ int employe_delete(LinkedList* this)
     int retorno=-1;
     int aux;
     int indice;
-    Employee* pEmpleado=NULL;
 
     if(this != NULL)
     {
@@ -325,8 +322,6 @@ int employe_delete(LinkedList* this)
     }
     return retorno;
 }
-
-
 int employee_listEmployees(LinkedList* this)
 {
     int retorno=-1;
@@ -355,7 +350,6 @@ int employee_listEmployees(LinkedList* this)
     }
     return retorno;
 }
-
 int employee_sortByName(void* employeeA,void* employeeB)
 {
     int retorno=0;
@@ -373,7 +367,6 @@ int employee_sortByName(void* employeeA,void* employeeB)
 
    return retorno;
 }
-
 int employee_sortBySalary(void* employeeA,void* employeeB)
 {
     int retorno=0;
@@ -432,7 +425,6 @@ int employee_sortById(void* employeeA,void* employeeB)
 
    return retorno;
 }
-
 int employee_sortByHoursWorked(void* employeeA,void* employeeB)
 {
     int retorno=0;
@@ -460,14 +452,17 @@ int employee_sortByHoursWorked(void* employeeA,void* employeeB)
     }
    return retorno;
 }
-
+/** \brief obtiene el id de manera estatica
+ *
+ * \return id nuevo
+ *
+ */
 static int obtenerId()
 {
     static int id=1000;
     id++;
     return id;
 }
-
 int proximoId()
 {
     return obtenerId();

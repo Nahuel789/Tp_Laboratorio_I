@@ -34,22 +34,51 @@ struct LinkedList
 
 
 //Publicas
+/** \brief Crea una nueva linkedList
+ *
+ * \return puntero a la linkedList
+ *
+ */
 LinkedList* ll_newLinkedList(void);
+/** \brief Calcula el tamanio de la linkedList
+ *
+ * \param this puntero a linkedList
+ * \return un entero que representa el tamanio, o -1 si se produjo un error
+ *
+ */
+
 int ll_len(LinkedList* this);
-Node* test_getNode(LinkedList* this, int nodeIndex);
-int test_addNode(LinkedList* this, int nodeIndex,void* pElement);
+/** \brief agrega un puntero void a la LinkedList
+ *
+ * \param this puntero de tipo LinkedList
+ * \param pElement puntero a void del elemento a agregar
+ * \return -1 si hay un error, 0 si esta todo ok
+ *
+ */
 int ll_add(LinkedList* this, void* pElement);
+
+/** \brief Retorna un puntero a void , pasando el indice como parametro
+ *
+ * \param this puntero a linkedList
+ * \param index indice del elemento a obtener
+ * \return puntero a void del elemento obtenido
+ *
+ */
 void* ll_get(LinkedList* this, int index);
-int ll_set(LinkedList* this, int index,void* pElement);
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 int ll_remove(LinkedList* this,int index);
-int ll_clear(LinkedList* this);
-int ll_deleteLinkedList(LinkedList* this);
-int ll_indexOf(LinkedList* this, void* pElement);
-int ll_isEmpty(LinkedList* this);
-int ll_push(LinkedList* this, int index, void* pElement);
-void* ll_pop(LinkedList* this,int index);
-int ll_contains(LinkedList* this, void* pElement);
-int ll_containsAll(LinkedList* this,LinkedList* this2);
-LinkedList* ll_subList(LinkedList* this,int from,int to);
-LinkedList* ll_clone(LinkedList* this);
+/** \brief ordena los elementos de la lista , pasandole una funcion como parametro
+ *
+ * \param this puntero a linkedList
+ * \param pFunc funcion para determinar que ordenamiento tendra
+ * \param order 1 ascendente , 0 descendente
+ * \return
+ *
+ */
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order);
