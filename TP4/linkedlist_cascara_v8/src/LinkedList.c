@@ -188,7 +188,7 @@ void* ll_get(LinkedList* this, int index)
 }
 
 
-/** \brief Modifica un elemento de la lista
+/** \brief Inserta un elemento en el LinkedList
  *
  * \param this LinkedList* Puntero a la lista
  * \param nodeIndex int Ubicacion del elemento a modificar
@@ -197,17 +197,6 @@ void* ll_get(LinkedList* this, int index)
                         ( 0) Si funciono correctamente
  *
  */
-
-
-/*
-
-Inserta un elemento en el LinkedList, en el índice
-especificado. Verificando que el puntero this sea
-distinto de NULL y que index sea positivo e inferior
- al tamaño del array. Si la verificación falla la
- función retorna (-1) y si tiene éxito (0).
-
-*/
 int ll_set(LinkedList* this, int index,void* pElement)
 {
     int returnAux =-1;
