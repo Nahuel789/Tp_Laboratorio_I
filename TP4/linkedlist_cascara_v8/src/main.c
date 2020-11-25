@@ -63,7 +63,7 @@ int main(void)
             }
             system("pause");
             break;
-        case 2:
+        case 2://AGREGA UN DINOSAURIO
             system("cls");
 
             if(flagParser)
@@ -79,7 +79,7 @@ int main(void)
             }
             system("pause");
             break;
-        case 3:
+        case 3://ELIMINA UN DINOSAURIO
             system("cls");
             if(flagParser)
             {
@@ -94,7 +94,7 @@ int main(void)
             }
             system("pause");
             break;
-        case 4:
+        case 4://EDITA UN DINOSAURIO
             system("cls");
             if(flagParser)
             {
@@ -110,7 +110,7 @@ int main(void)
             }
             system("pause");
             break;
-        case 5:
+        case 5://LISTAR UN DINOSAURIO
             system("cls");
 
             if(flagParser)
@@ -127,7 +127,7 @@ int main(void)
 
             system("pause");
             break;
-        case 6:
+        case 6://ESTA VACIA
             system("cls");
             if(ll_isEmpty(linkedList1))
             {
@@ -139,13 +139,10 @@ int main(void)
             }
             system("pause");
             break;
-        case 7:
-            //MENU ORDENAMIENTO
+        case 7://MENU ORDENAMIENTO
             system("cls");
-
             if(flagParser)
             {
-
                 switch(menuOrdenamiento())
                 {
                 case 1 :
@@ -237,7 +234,7 @@ int main(void)
             }
             system("pause");
             break;
-        case 10://CONTAINS ALL
+        case 10://VERIFICA SI LA LISTA 1 Y 3 SON IGUALES
             system("cls");
             if(flagParser)
             {
@@ -257,7 +254,7 @@ int main(void)
             system("pause");
             break;
 
-        case 11://SUBLIST
+        case 11://CREA UNA SUBLISTA
             system("cls");
             if(flagParser)
             {

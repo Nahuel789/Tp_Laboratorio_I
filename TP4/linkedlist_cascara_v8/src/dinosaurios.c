@@ -121,7 +121,7 @@ int dinosaur_setTipo(eDinosaurio* this,char* tipo)
 
 }
 
-int dinosaur_list(LinkedList* this) //LISTA EMPLEADOS ACTIVOS
+int dinosaur_list(LinkedList* this) //LISTA DINOSAURIOS ACTIVOS
 {
     int retorno=-1;
     eDinosaurio* pDinosaur=NULL;
@@ -208,7 +208,7 @@ int parser_DinoFromText(char* path, LinkedList* pArrayDinosaur)
     }
     return retorno;
 }
-int dinosaur_add(LinkedList* this) //AGREGA UN EMPLEADO A LA LINKEDLIST
+int dinosaur_add(LinkedList* this) //AGREGA UN DINOSAURIO A LA LINKEDLIST
 {
     int retorno=-1;
     eDinosaurio* pDinosaurio=NULL;
@@ -222,6 +222,7 @@ int dinosaur_add(LinkedList* this) //AGREGA UN EMPLEADO A LA LINKEDLIST
         printf("......................................................................................................................\n");
         printf("................................................ALTA DE DINOSAURIO......................................................\n");
         printf("......................................................................................................................\n\n");
+
         sprintf(id,"%d",proximoId());
 
         if(!utn_getCadena(especie,sizeof(especie),1,"Ingrese la especie del dinosaurio: ","Error,reingrese: "))
@@ -259,7 +260,7 @@ int proximoId()
     return obtenerId();
 }
 
-void dinosaur_delete(eDinosaurio* this) //ELIMINA UN EMPLEADO
+void dinosaur_delete(eDinosaurio* this) //ELIMINA UN DINOSAURIO
 {
     free(this);
     this=NULL;
@@ -282,7 +283,7 @@ int filterCarnivoro(void* a)
 
 }
 
-int dinosaur_edit(LinkedList* this) //EDITA UN EMPLEADO
+int dinosaur_edit(LinkedList* this) //EDITA UN DINOSAURIO
 {
     int retorno=-1;
     int aux;
@@ -348,7 +349,7 @@ int dinosaur_edit(LinkedList* this) //EDITA UN EMPLEADO
     }
     return retorno;
 }
-int dinosaur_findById(LinkedList* this, int id) //BUSCA EMPLEADOS POR ID
+int dinosaur_findById(LinkedList* this, int id) //BUSCA DINOSAURIOS POR ID
 {
     int indice = -1;
     int len = ll_len(this);
@@ -372,7 +373,7 @@ int dinosaur_findById(LinkedList* this, int id) //BUSCA EMPLEADOS POR ID
     }
     return indice;
 }
-int dinosaur_changeName(eDinosaurio* this) //CAMBIA EL NOMBRE DE UN EMPLEADO
+int dinosaur_changeName(eDinosaurio* this) //CAMBIA EL NOMBRE DE UN DINOSAURIO
 {
     int retorno=-1;
     char nombre[50];
@@ -389,7 +390,7 @@ int dinosaur_changeName(eDinosaurio* this) //CAMBIA EL NOMBRE DE UN EMPLEADO
     }
     return retorno;
 }
-int dinosaur_changeHeight(eDinosaurio* this)//CAMBIA EL SALARIO DE UN EMPLEADO
+int dinosaur_changeHeight(eDinosaurio* this)//CAMBIA LA ALTURA DE UN DINOSAURIO
 {
     int retorno=-1;
     float altura;
@@ -408,7 +409,7 @@ int dinosaur_changeHeight(eDinosaurio* this)//CAMBIA EL SALARIO DE UN EMPLEADO
 
     return retorno;
 }
-int dinosaur_changeType(eDinosaurio* this)//CAMBIA LAS HORAS DE UN EMPLEADO
+int dinosaur_changeType(eDinosaurio* this)//CAMBIA EL TIPO DE UN DINOSAURIO
 {
     int retorno=-1;
     char tipo[50];
@@ -426,7 +427,7 @@ int dinosaur_changeType(eDinosaurio* this)//CAMBIA LAS HORAS DE UN EMPLEADO
     }
     return retorno;
 }
-int dinosaur_sortByName(void* a, void* b)
+int dinosaur_sortByName(void* a, void* b)//COMPARA POR NOMBRE
 {
     int retorno=0;
     eDinosaurio* pA=(eDinosaurio*)a;
@@ -441,7 +442,7 @@ int dinosaur_sortByName(void* a, void* b)
     }
     return retorno;
 }
-int dinosaur_sortByHeight(void* a, void* b)
+int dinosaur_sortByHeight(void* a, void* b)//COMPARA ALTURA
 {
     int retorno=0;
     eDinosaurio* pA=(eDinosaurio*)a;
@@ -463,7 +464,7 @@ int dinosaur_sortByHeight(void* a, void* b)
     }
     return retorno;
 }
-int dinosaur_sortByType(void* a, void* b)
+int dinosaur_sortByType(void* a, void* b)//COMPARA TIPOS
 {
     int retorno=0;
     eDinosaurio* pA=(eDinosaurio*)a;
@@ -481,7 +482,7 @@ int dinosaur_sortByType(void* a, void* b)
     return retorno;
 }
 
-int saveAsText(char* path, LinkedList* lista)
+int saveAsText(char* path, LinkedList* lista)//SALVA COMO TEXTO
 {
     int retorno=-1;
     FILE* pFile;
