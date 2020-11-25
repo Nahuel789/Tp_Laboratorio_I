@@ -276,23 +276,12 @@ int ll_clear(LinkedList* this)
     int returnAux = -1;
     if(this != NULL)
     {
-
-
         while(ll_len(this) > 0)
         {
             ll_remove(this,0);
             returnAux=0;
         }
-
-        /*for(int i=ll_len(this)-1;i>=0;i--)
-        {
-                ll_remove(this,i);
-                returnAux=0;
-        }
-        */
     }
-
-    printf("RETURN AUX LL CLEAR: %d",returnAux);
     return returnAux;
 }
 /** \brief Elimina todos los elementos de la lista y la lista
@@ -308,17 +297,14 @@ int ll_deleteLinkedList(LinkedList* this)
 
     if(this != NULL)
     {
-        printf("hola");
         if(!ll_clear(this))
         {
-            printf("queace");
+
             free(this);
             this=NULL;
             returnAux=0;
         }
     }
-    printf("%d",returnAux);
-    system("pause");
     return returnAux;
 }
 
@@ -560,7 +546,7 @@ LinkedList* ll_filter(LinkedList* this,int(*pFunc)(void*))
 
                 if(param != NULL)
                 {
-                    if(pFunc(param))
+                    if(pFunc(param) == 1)
                     {
                         ll_add(listaNew,param);
                     }

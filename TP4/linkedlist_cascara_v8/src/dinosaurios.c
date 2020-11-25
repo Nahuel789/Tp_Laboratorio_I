@@ -296,6 +296,7 @@ int dinosaur_edit(LinkedList* this) //EDITA UN EMPLEADO
         printf(".............................................EDICION DE DINOS.........................................................\n");
         printf("......................................................................................................................\n\n");
 
+        dinosaur_list(this);
 
         if(!utn_getNumero(&aux,"Ingrese el id que quiere: \n","Error.Reingrese:",1,100000,3))
         {
